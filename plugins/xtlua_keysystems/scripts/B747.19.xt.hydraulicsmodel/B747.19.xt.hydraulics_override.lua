@@ -1058,6 +1058,12 @@ function get_damper_value(currentValue)
     if math.abs(simDR_AHARS_roll_heading_deg_pilot)<5 then
         mult=B747_rescale(0,0,0.35,1,yawPid.input)
     end
+    
+    if mult==0 or target==nil then
+        return 0
+    end
+    --print("mult "..mult)
+    --print("target "..target)
     target=target*mult
     return target --B747_interpolate_value(currentValue,target,-1,1,speed)
 end
